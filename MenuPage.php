@@ -39,7 +39,7 @@ include 'config.php';
         {
             text-align: center;
         }
-        a
+        .register
         {
             color: black;
             display: inline;
@@ -87,6 +87,14 @@ include 'config.php';
             display: block;
             margin-bottom: 20px;
         }
+        .orderbutton
+        {
+            color: black;
+            display: inline;
+            margin: 1%;
+            padding-bottom: 5%;
+            font-size: large;
+        }
 }   
 
 
@@ -95,10 +103,24 @@ include 'config.php';
 <body>
     <header>
         <h1>FoodShala</h1>
-        <a class="register" href="CustomerLogin.html">Login / Register as Customer</a>
+        <?php 
+        if (!isset($_GET['cus_id'])) {?>
+        <a class="register" href="CustomerLogin.php">Login / Register as Customer</a>
         <!-- <a class="register" href="CustomerRegister.html">Register as Customer</a> -->
-        <a class="register" href="RestaurantLogin.html">Login / Register as Restaurant Owner</a>
+        <a class="register" href="RestaurantLogin.php">Login / Register as Restaurant Owner</a>
         <!-- <a class="register" href="RestaurantRegister.html">Register as Restaurant Owner</a> -->
+        <?php } else{ 
+            $custo_id=$_GET['cus_id'];
+            $sql = "SELECT customername FROM customer_details where customerid='$custo_id'";
+            $res = mysqli_query($conn, $sql);
+            $temp = mysqli_fetch_array($res);
+            $custo_name=$temp['customername'];
+            echo("Loged in as ");
+            echo($custo_name);?>
+            <a href="MenuPage.php">
+                <p><button>Log Out</button></p></a>
+            <?php } ?>
+        
         <br>
         <br>
     </header>
@@ -110,15 +132,20 @@ include 'config.php';
             {
                 $itemname = $ap['itemname'];
                 $price = $ap['price'];
-                $restaurantname=$ap['restaurantid']
+                $restaurantid=$ap['restaurantid'];
+                $itemid=$ap['itemid'];
+                $sql_e = "SELECT restaurantname FROM restaurant_details WHERE restaurantid='$restaurantid'";
+                $res_u = mysqli_query($conn, $sql_e);
+                $restaurantname = mysqli_fetch_array($res_u);
             ?>
         <div class="column">
             <div class="card">
                 <img src="https://media.istockphoto.com/photos/tasty-pepperoni-pizza-and-cooking-ingredients-tomatoes-basil-on-black-picture-id1083487948?k=6&m=1083487948&s=612x612&w=0&h=lK-mtDHXA4aQecZlU-KJuAlN9Yjgn3vmV2zz5MMN7e4=" alt="Denim Jeans" style="width:100%">
-                <h1<?php echo $itemname; ?></h1>
+                <h1><?php echo $itemname; ?></h1>
                 <p class="price">Rs <?php echo $price; ?></p>
-                <p><?php echo $restaurantname; ?></p>
-                <p><button>Order Now</button></p>
+                <p><?php echo $restaurantname['restaurantname']; ?></p>
+                <a <?php if (isset($_GET['cus_id'])) { ?> href="FoodOrdered.php?cus_id=<?php echo $_GET['cus_id']?>&res_id=<?php echo $restaurantid?>&item_id=<?php echo $itemid?>" <?php } ?>href="CustomerLogin.php">
+                <p ><button class="orderbutton">Order Now</button></p></a>
                 <p><button>Add to Cart</button></p>
             </div>
         </div>

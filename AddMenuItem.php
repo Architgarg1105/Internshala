@@ -47,7 +47,7 @@ else{
     <style>
         .log-form
         {
-            margin-top: 15%;
+            margin-top: 5%;
             width: 25%;
             height: 50%;
             background-color: gainsboro;
@@ -75,6 +75,18 @@ else{
     </style>
 </head>
 <body>
+    <br>
+<?php 
+    if (isset($_GET['res_id'])) { 
+        $restau_id=$_GET['res_id'];
+        $sql = "SELECT restaurantname FROM restaurant_details where restaurantid='$restau_id'";
+        $res = mysqli_query($conn, $sql);
+        $temp = mysqli_fetch_array($res);
+        $restau_name=$temp['restaurantname'];
+        echo("Loged in as ");
+        echo($restau_name); ?>
+        <a href="MenuPage.php"><p><button>Log Out</button></p></a>
+        <?php } ?>
     <center>
         <div class="log-form">
             <h2>Add Items In Your Menu</h2>
@@ -96,8 +108,10 @@ else{
             <br>
             <input type="submit" name="submit" value="Submit">
             <br>
+            
             </form>
           </div>
+          <h1><a class="register" href="ViewOrders.php?res_id=<?php echo $_GET['res_id']?>">View Your Orders</a></h1>
         </center>
 </body>
 </html>

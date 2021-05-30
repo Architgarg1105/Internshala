@@ -1,3 +1,28 @@
+<?php
+include 'config.php';
+if(isset($_POST['submit']))
+{
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $sql_u = "SELECT * FROM restaurant_details WHERE username='$username' && restaurantpassword='$password'";
+  	$res_u = mysqli_query($conn, $sql_u);
+    $var = mysqli_fetch_array($res_u);
+    if (mysqli_num_rows($res_u) == 1) 
+    {
+  	    echo "successfully login"; 
+        header ("Location:./AddMenuItem.php?res_id=$var[0]");
+    }
+    else
+    {
+  	  echo "Sorry not a customer yet"; 	
+  	}
+    
+}
+else{
+    echo "Please click Register button to submit the data..";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,17 +69,17 @@
     <center>
     <div class="log-form">
         <h2>Login to Add Item or to View Orders</h2>
-        <form>
+        <form method="POST">
         <b>Username</b>
         <input type="text" name="username" placeholder="Username" required/>
         <br>
         <b>Password</b>
         <input type="password" name="password" placeholder="Password" required/>
         <br>
-        <button type="submit" class="btn">Login</button>
+        <input type="submit" name="submit" value="Login">
         <br>
         Not a Registered Owner Yet?
-        <a class="register" href="RestaurantRegister.html">Register</a>
+        <a class="register" href="RestaurantRegister.php">Register</a>
         <br>
         <br>
         </form>

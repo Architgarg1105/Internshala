@@ -1,11 +1,6 @@
 <?php
-include 'config.php';
-?>
-<?php
-
     include 'config.php';
-    $res_id=$_GET['res_id'];
-    $sql= "SELECT * FROM ordered_items WHERE restaurantid='$res_id'";
+    $sql= "SELECT * FROM ordered_items";
     $var = mysqli_query($conn, $sql);
     // $orders = mysqli_fetch_array($var);
     // while($ar = mysqli_fetch_assoc($orders))
@@ -24,19 +19,7 @@ include 'config.php';
     <title>Document</title>
 </head>
 <body>
-    <br>
-<?php 
-    if (isset($_GET['res_id'])) { 
-        $restau_id=$_GET['res_id'];
-        $sql = "SELECT restaurantname FROM restaurant_details where restaurantid='$restau_id'";
-        $res = mysqli_query($conn, $sql);
-        $temp = mysqli_fetch_array($res);
-        $restau_name=$temp['restaurantname'];
-        echo("Loged in as ");
-        echo($restau_name); ?>
-        <a href="MenuPage.php"><p><button>Log Out</button></p></a>
-        <?php } ?>
-        <br>
+
     <table border="1px">
         <thead>
             <td>Order Id</td>

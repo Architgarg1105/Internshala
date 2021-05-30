@@ -107,7 +107,7 @@ else{
         <input type="submit" name="submit" value="Register">
         <br>
         Already a Customer?
-        <a class="register" href="CustomerLogin.html">Login</a>
+        <a class="register" href="CustomerLogin.php">Login</a>
         <br>
         <br>
         </form>

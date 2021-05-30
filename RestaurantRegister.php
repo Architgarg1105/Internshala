@@ -104,7 +104,7 @@ else{
         <input type="submit" name="submit" value="Register">
         <br>
         Already a Registered Restaurant Owner?
-        <a class="register" href="RestaurantLogin.html">Login</a>
+        <a class="register" href="RestaurantLogin.php">Login</a>
         <br>
         <br>
         </form>
