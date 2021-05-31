@@ -23,6 +23,10 @@ include 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body
+        {
+            background-color:rgb(37, 211, 102);
+        }
         header
         {
             background-color: gainsboro;
@@ -37,7 +41,7 @@ include 'config.php';
             margin-left:auto;
             margin-right:auto;
             width:70%;
-            background-color:cyan;
+            background-color:gainsboro;
             font-size:30px;
         }
         thead
@@ -67,7 +71,7 @@ include 'config.php';
             <?php } ?>
         </header>
         <br>
-    <table border="1px">
+    <table>
         <thead>
             <!-- <td>Order Id</td> -->
             <td>Customer Name</td>

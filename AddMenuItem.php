@@ -24,11 +24,6 @@ if(isset($_POST['submit']))
     else{
         $sql = "INSERT INTO add_item (restaurantid, itemname, price, category) VALUES ('$resid', '$itemname', '$price', '$category')";
         mysqli_query($conn, $sql);
-        // $fetch = mysqli_query($conn,"select * from users where email = '$email'");
-        // $data = mysqli_fetch_array($fetch);
-        // $id = $data['id'];
-        // $sql1 = "insert into student_details (username, branch, year) values ('$id', '$branch', '$year')";
-        // mysqli_query($conn,$sql1);
   	}
     
 }
@@ -45,45 +40,141 @@ if(isset($_POST['submit']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+         body
+        {
+            background-color:cyan;
+            background: url('https://images.unsplash.com/photo-1620589125156-fd5028c5e05b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1965&q=80')no-repeat;
+            height:100%;
+        }
         .log-form
         {
-            margin-top: 5%;
-            width: 25%;
+            margin-top: 20%;
+            width: 50%;
             height: 50%;
-            background-color: gainsboro;
+            background-color: rgba(37,150,190,0.7);
+            border-radius:10%;
+            margin-left:40px;
+            box-shadow:
+    0 0 20px 20px #fff,  /* inner white */
+    0 0 30px 30px #0ff; /* middle magenta */
         }
         input[type="submit"]
         {
-            background-color: blue;
-            color: white;
+            background-color: 	white;
+            color: red;
             width: 25%;
             font-size: 20px;
             padding: 5px;
+            border-radius:5px;
+            font-weight:bold;
+            cursor: pointer;
+            box-shadow:
+    0 0 10px 10px #fff,  /* inner white */
+    0 0 10px 10px #0ff; /* middle magenta */
+            
+        }
+        input[type=text] {
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            font-size: 30px;
+            border-bottom: 5px solid red;
+            width: 50%;
+            height: 25px;
+            margin-left:20px;
+            text-align: center;
+            box-shadow:
+    0 0 10px 10px #fff,  /* inner white */
+    0 0 10px 10px #0ff; /* middle magenta */
+        }
+        input[type=password] {
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            font-size: 30px;
+            border-bottom: 5px solid red;
+            width: 50%;
+            height: 25px;
+            margin-left:20px;
+            text-align: center;
+            box-shadow:
+    0 0 10px 10px #fff,  /* inner white */
+    0 0 10px 10px #0ff; /* middle magenta */
+
+        }
+        input[type=number] {
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            font-size: 30px;
+            border-bottom: 5px solid red;
+            width: 50%;
+            height: 25px;
+            margin-left:20px;
+            text-align: center;
+            box-shadow:
+    0 0 10px 10px #fff,  /* inner white */
+    0 0 10px 10px #0ff; /* middle magenta */
+
         }
         input
         {
             margin-top: 10px;
             margin-bottom: 10px;
             padding: 5px;
+            border-radius:5px;
         }
-        h2
+        a
         {
             margin-top: 10px;
+            margin-bottom: 10px;
+            font-weight:bold;
+            color:gold;
+            
         }
-        header
+        h1,h2
         {
-            background-color: gainsboro;
-            padding-bottom: 1%;
+            padding-top: 10px;
+            color: white;
+            text-shadow: 1px 1px 2px black, 0 0 25px purple, 0 0 5px darkblue;
         }
-        h1
+        b
         {
-            text-align: center;
+            font-size:35px;
+            box-shadow:
+    0 0 10px 10px #fff,  /* inner white */
+    0 0 10px 10px #FF4500; /* middle magenta */
+    color:white;
+        }
+        p
+        {
+            font-size:25px;
+            font-weight:bold;
+            color: white;
+            text-shadow: 1px 1px 2px black, 0 0 25px purple, 0 0 5px darkblue;
+        }
+        .register 
+        {
+            color: white;
+            text-shadow: 1px 1px 2px black, 0 0 25px purple, 0 0 5px darkblue;
+        }
+        button
+        {
+            background-color: 	white;
+            color: red;
+            width: 25%;
+            height:45px;
+            font-size: 20px;
+            padding: 5px;
+            border-radius:5px;
+            font-weight:bold;
+            box-shadow:
+    0 0 10px 10px #fff,  /* inner white */
+    0 0 10px 10px #0ff; /* middle magenta */
+            border:2px solid black;
         }
     </style>
+    
 </head>
 <body>
     <header>
-        <h1>FoodShala</h1>
 <?php 
     if (isset($_GET['res_id'])) { 
         $restau_id=$_GET['res_id'];
@@ -92,40 +183,40 @@ if(isset($_POST['submit']))
         $temp = mysqli_fetch_array($res);
         $restau_name=$temp['restaurantname'];
         ?>
-            <h2 style="margin-left:5%;">
+            <h1 style="margin-left:5%;">
             <a href="MenuPage.php">
-                <p ><button style="float:right;margin-right:10%;background-color:blue;color:white;font-weight:bold;">Log Out</button></p></a>
+                <p ><button style="float:right;margin-right:10%;">Log Out</button></p></a>
             <?php
             echo("Loged in as ");
             echo($restau_name);?>
-            </h2>
+            </h1>
             <?php } ?>
             </header>
     <center>
         <div class="log-form">
-            <h2>Add Items In Your Menu</h2>
-            <form method="POST" action="AddMenuItem.php">
-            <b>Username</b>
+            <h1>Add Items In Your Menu</h1>
+            <form method="POST">
+            <button disabled>Username</button>
             <input type="text" name="username" placeholder="Username" required/>
             <br>
-            <b>Password</b>
+            <button disabled>Password</button>
             <input type="password" name="password" placeholder="Password" required />
             <br>
-            <b>Item Name</b>
+            <button disabled>Item Name</button>
             <input type="text" name="itemname" placeholder="Item Name" required/>
             <br>
-            <b>Price</b>
-            <input type="password" name="price" placeholder="Price" required/>
+            <button disabled>Price</button>
+            <input type="number" name="price" placeholder="Price" required/>
             <br>
-            <b>Category</b>
-            <input type="password" name="category" placeholder="Veg/Non-Veg" required/>
+            <button disabled>Category</button>
+            <input type="text" name="category" placeholder="Veg/Non-Veg" required/>
+            <br>
             <br>
             <input type="submit" name="submit" value="Submit">
-            <br>
-            
+            <h1><a class="register" href="ViewOrders.php?res_id=<?php echo $_GET['res_id']?>">View Your Orders</a></h1>
             </form>
           </div>
-          <h1><a class="register" href="ViewOrders.php?res_id=<?php echo $_GET['res_id']?>">View Your Orders</a></h1>
+          
         </center>
 </body>
 </html>

@@ -28,7 +28,7 @@ include 'config.php';
     <style>
         body
         {
-            background-color:cyan;
+            background-color: rgb(37,150,190);
         }
         .navbar
         {
@@ -36,21 +36,33 @@ include 'config.php';
         }
         header
         {
-            background-color: gainsboro;
+            background-color: rgb(219, 218, 218);
             margin-bottom: 2%;
             padding-top: 1px;
         }
         h1
         {
-            text-align: center;
+            
+            color: white;
+            text-shadow: 1px 1px 2px black, 0 0 25px purple, 0 0 5px darkblue;
         }
         .register
         {
-            color: black;
+            
             display: inline;
-            margin: 16%;
-            padding-bottom: 5%;
-            font-size: large;
+            margin: 18%;
+            background-color: 	white;
+            color: red;
+            width: 25%;
+            height:45px;
+            font-size: 20px;
+            padding: 5px;
+            border-radius:5px;
+            font-weight:bold;
+            box-shadow:
+    0 0 10px 10px #fff,  /* inner white */
+    0 0 10px 10px purple; /* middle magenta */
+            border:2px solid black;
         }
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -59,10 +71,18 @@ include 'config.php';
             background-color:white;
         }
         .price {
-            color: grey;
+            color: red;
             font-size: 22px;
+            
+            text-shadow: 1px 1px 2px black, 0 0 25px purple, 0 0 5px darkblue;
         }
 
+        .restauname {
+            color: black;
+            font-size: 30px;
+            text-shadow: 1px 1px 2px black, 0 0 25px purple, 0 0 5px darkblue;
+        }
+        
         .card button {
             border: none;
             outline: 0;
@@ -108,12 +128,12 @@ include 'config.php';
 </head>
 <body>
     <header>
-        <h1>FoodShala</h1>
+        <h1 style="text-align:center;">FoodShala</h1>
         <?php 
         if (!isset($_GET['cus_id'])) {?>
-        <a class="register" href="CustomerLogin.php">Login / Register as Customer</a>
+        <a class="register" href="CustomerLogin.php">Login as Customer</a>
         <!-- <a class="register" href="CustomerRegister.html">Register as Customer</a> -->
-        <a class="register" href="RestaurantLogin.php">Login / Register as Restaurant Owner</a>
+        <a class="register" href="RestaurantLogin.php">Login as Restaurant</a>
         <!-- <a class="register" href="RestaurantRegister.html">Register as Restaurant Owner</a> -->
         <?php } else{ 
             $custo_id=$_GET['cus_id'];
@@ -122,13 +142,23 @@ include 'config.php';
             $temp = mysqli_fetch_array($res);
             $custo_name=$temp['customername'];
             ?>
-            <h2 style="margin-left:5%;">
-            <a href="MenuPage.php">
-                <p ><button style="float:right;margin-right:10%;background-color:blue;color:white;font-weight:bold;">Log Out</button></p></a>
+            <h1 style="margin-left:5%;">
+            <a  href="MenuPage.php">
+                <button class="lout" 
+                    style="float:right;margin-right:10%;background-color:white;
+                            color: red;width: 10%;height:45px;font-size: 25px;
+                            padding: 5px;border-radius:5px;font-weight:bold;
+                            box-shadow:
+                                0 0 10px 10px #fff,  /* inner white */
+                                0 0 10px 10px purple; /* middle magenta */
+                            border:2px solid black;"
+                >Log Out
+                </button>
+            </a>
             <?php
             echo("Loged in as ");
             echo($custo_name);?>
-            </h2>
+            </h1>
             <?php } ?>
         
         <br>
@@ -151,9 +181,9 @@ include 'config.php';
         <div class="column">
             <div class="card">
                 <img src="https://media.istockphoto.com/photos/tasty-pepperoni-pizza-and-cooking-ingredients-tomatoes-basil-on-black-picture-id1083487948?k=6&m=1083487948&s=612x612&w=0&h=lK-mtDHXA4aQecZlU-KJuAlN9Yjgn3vmV2zz5MMN7e4=" alt="Denim Jeans" style="width:100%">
-                <h1><?php echo $itemname; ?></h1>
+                <h1 style="text-align:center;"><?php echo $itemname; ?></h1>
                 <p style="font-weight:bold;" class="price">Rs <?php echo $price; ?></p>
-                <p><?php echo $restaurantname['restaurantname']; ?></p>
+                <p class="restauname"><?php echo $restaurantname['restaurantname']; ?></p>
                 <a <?php if (isset($_GET['cus_id'])) { ?> onclick="alert('Food Ordered');" href="FoodOrdered.php?cus_id=<?php echo $_GET['cus_id']?>&res_id=<?php echo $restaurantid?>&item_id=<?php echo $itemid?>" <?php } ?>href="CustomerLogin.php">
                 <p ><button class="orderbutton">Order Now</button></p></a>
                 <p><button>Add to Cart</button></p>
