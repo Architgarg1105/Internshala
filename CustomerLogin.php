@@ -18,9 +18,9 @@ if(isset($_POST['submit']))
   	}
     
 }
-else{
-    echo "Please click Register button to submit the data..";
-}
+// else{
+//     echo "Please click Register button to submit the data..";
+// }
 ?>
 
 
@@ -34,19 +34,17 @@ else{
     <style>
         .log-form
         {
-            margin-top: 15%;
+            margin-top: 10%;
             width: 25%;
             height: 50%;
             background-color: gainsboro;
         }
-        .btn
+        input[type="submit"]
         {
             background-color: blue;
             color: white;
-            width: 20%;
+            width: 25%;
             font-size: 20px;
-            margin-top: 10px;
-            margin-bottom: 30px;
             padding: 5px;
         }
         input
@@ -59,10 +57,11 @@ else{
         {
             margin-top: 10px;
             margin-bottom: 10px;
+            font-weight:bold;
         }
         h2
         {
-            margin-top: 10px;
+            padding-top: 10px;
         }
     </style>
     
@@ -75,11 +74,13 @@ else{
         <b>Username</b>
         <input type="text" name="username" placeholder="Username" required/>
         <br>
+        <br>
         <b>Password</b>
         <input type="password" name="password" placeholder="Password" required/>
         <br>
-        
+        <br>
         <input type="submit" name="submit" value="Login">
+        <br>
         <br>
         Not a Customer?
         <a class="register" href="CustomerRegister.php">Register</a>

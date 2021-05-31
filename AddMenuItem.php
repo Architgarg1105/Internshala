@@ -32,9 +32,9 @@ if(isset($_POST['submit']))
   	}
     
 }
-else{
-    echo "Please click Register button to submit the data..";
-}
+// else{
+//     echo "Please click Register button to submit the data..";
+// }
 ?>
 
 <!DOCTYPE html>
@@ -52,14 +52,12 @@ else{
             height: 50%;
             background-color: gainsboro;
         }
-        .btn
+        input[type="submit"]
         {
             background-color: blue;
             color: white;
-            width: 20%;
+            width: 25%;
             font-size: 20px;
-            margin-top: 10px;
-            margin-bottom: 30px;
             padding: 5px;
         }
         input
@@ -72,10 +70,20 @@ else{
         {
             margin-top: 10px;
         }
+        header
+        {
+            background-color: gainsboro;
+            padding-bottom: 1%;
+        }
+        h1
+        {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <br>
+    <header>
+        <h1>FoodShala</h1>
 <?php 
     if (isset($_GET['res_id'])) { 
         $restau_id=$_GET['res_id'];
@@ -83,10 +91,16 @@ else{
         $res = mysqli_query($conn, $sql);
         $temp = mysqli_fetch_array($res);
         $restau_name=$temp['restaurantname'];
-        echo("Loged in as ");
-        echo($restau_name); ?>
-        <a href="MenuPage.php"><p><button>Log Out</button></p></a>
-        <?php } ?>
+        ?>
+            <h2 style="margin-left:5%;">
+            <a href="MenuPage.php">
+                <p ><button style="float:right;margin-right:10%;background-color:blue;color:white;font-weight:bold;">Log Out</button></p></a>
+            <?php
+            echo("Loged in as ");
+            echo($restau_name);?>
+            </h2>
+            <?php } ?>
+            </header>
     <center>
         <div class="log-form">
             <h2>Add Items In Your Menu</h2>

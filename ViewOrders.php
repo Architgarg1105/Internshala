@@ -22,9 +22,33 @@ include 'config.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        header
+        {
+            background-color: gainsboro;
+            padding-bottom: 1%;
+        }
+        h1
+        {
+            text-align: center;
+        }
+        table 
+        {
+            margin-left:auto;
+            margin-right:auto;
+            width:70%;
+            background-color:cyan;
+            font-size:30px;
+        }
+        thead
+        {
+            font-weight:bold;
+        }
+        </style>
 </head>
 <body>
-    <br>
+    <header>
+        <h1>FoodShala</h1>
 <?php 
     if (isset($_GET['res_id'])) { 
         $restau_id=$_GET['res_id'];
@@ -32,14 +56,20 @@ include 'config.php';
         $res = mysqli_query($conn, $sql);
         $temp = mysqli_fetch_array($res);
         $restau_name=$temp['restaurantname'];
-        echo("Loged in as ");
-        echo($restau_name); ?>
-        <a href="MenuPage.php"><p><button>Log Out</button></p></a>
-        <?php } ?>
+        ?>
+            <h2 style="margin-left:5%;">
+            <a href="MenuPage.php">
+                <p ><button style="float:right;margin-right:10%;background-color:blue;color:white;font-weight:bold;">Log Out</button></p></a>
+            <?php
+            echo("Loged in as ");
+            echo($restau_name);?>
+            </h2>
+            <?php } ?>
+        </header>
         <br>
     <table border="1px">
         <thead>
-            <td>Order Id</td>
+            <!-- <td>Order Id</td> -->
             <td>Customer Name</td>
             <td>Item Name</td>
             <td>Price</td>
@@ -58,7 +88,7 @@ include 'config.php';
                 $temp2 = mysqli_fetch_array($res2);
         ?>
             <tr>
-                <td><?php echo $row['orderid']?></td>
+                <!-- <td><?php echo $row['orderid']?></td> -->
                 <td><?php echo $temp1['customername']?></td>
                 <td><?php echo $temp2['itemname']?></td>
                 <td><?php echo $temp2['price']?></td>

@@ -33,9 +33,9 @@ if(isset($_POST['submit']))
   	}
     
 }
-else{
-    echo "Please click Register button to submit the data..";
-}
+// else{
+//     echo "Please click Register button to submit the data..";
+// }
 ?>
 
 <!DOCTYPE html>
@@ -71,10 +71,11 @@ else{
         {
             margin-top: 10px;
             margin-bottom: 10px;
+            font-weight:bold;
         }
         h2
         {
-            margin-top: 10px;
+            padding-top: 10px;
         }
     </style>
 </head>
@@ -103,7 +104,8 @@ else{
         <br>
         <input type="submit" name="submit" value="Register">
         <br>
-        Already a Registered Restaurant Owner?
+        <br>
+        Already a Registered Restaurant?
         <a class="register" href="RestaurantLogin.php">Login</a>
         <br>
         <br>
