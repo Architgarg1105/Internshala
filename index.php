@@ -141,7 +141,7 @@ include 'config.php';
             $custo_name=$temp['customername'];
             ?>
             <h1 style="margin-left:5%;">
-            <a  href="MenuPage.php">
+            <a  href="index.php">
                 <button class="lout" 
                     style="float:right;margin-right:10%;background-color:white;
                             color: red;width: 10%;height:45px;font-size: 25px;

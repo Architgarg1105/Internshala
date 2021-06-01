@@ -1,8 +1,8 @@
 <?php
-$hostname = "127.0.0.1";
-$username = "root";
-$password = "";
-$databasename = "foodshala";
+$hostname = "sql100.epizy.com";
+$username = "epiz_28768313";
+$password = "z5mdfRjcqnkngcn";
+$databasename = "epiz_28768313_foodshala";
 
 $conn = mysqli_connect($hostname, $username, $password, $databasename);
 if($conn){}

@@ -59,7 +59,7 @@ include 'config.php';
                 $restau_name=$temp['restaurantname'];
         ?>
         <h2 style="margin-left:5%;">
-            <a href="MenuPage.php"><p><button style="float:right;margin-right:10%;background-color:blue;color:white;font-weight:bold;">Log Out</button></p></a>
+            <a href="index.php"><p><button style="float:right;margin-right:10%;background-color:blue;color:white;font-weight:bold;">Log Out</button></p></a>
             <?php
                 echo("Loged in as ");
                 echo($restau_name);

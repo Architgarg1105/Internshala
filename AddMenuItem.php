@@ -191,7 +191,7 @@ if(isset($_POST['submit']))
         $restau_name=$temp['restaurantname'];
         ?>
             <h1 style="margin-left:5%;">
-            <a href="MenuPage.php">
+            <a href="index.php">
                 <p ><button style="float:right;margin-right:10%;width:10%;font-size:25px;">Log Out</button></p></a>
             <?php
             echo("Loged in as ");

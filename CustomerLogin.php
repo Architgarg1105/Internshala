@@ -10,7 +10,7 @@ if(isset($_POST['submit']))
     $var = mysqli_fetch_array($res_u);
     if (mysqli_num_rows($res_u) == 1) 
     {
-        header ("Location:./MenuPage.php?cus_id=$var[0]");
+        header ("Location:./index.php?cus_id=$var[0]");
     } 
   	else
     {
@@ -43,8 +43,8 @@ if(isset($_POST['submit']))
             border-radius:10%;
             margin-left:40px;
             box-shadow:
-    0 0 20px 20px #fff, 
-    0 0 30px 30px #0ff; 
+                0 0 20px 20px #fff, 
+                0 0 30px 30px #0ff; 
         }
         input[type="submit"]
         {
@@ -57,8 +57,8 @@ if(isset($_POST['submit']))
             font-weight:bold;
             cursor: pointer;
             box-shadow:
-    0 0 10px 10px #fff,
-    0 0 10px 10px #0ff; 
+                0 0 10px 10px #fff,
+                0 0 10px 10px #0ff; 
             
         }
         input[type=text] {
@@ -71,8 +71,8 @@ if(isset($_POST['submit']))
             margin-left:20px;
             text-align: center;
             box-shadow:
-    0 0 10px 10px #fff,  
-    0 0 10px 10px #0ff; 
+                0 0 10px 10px #fff,  
+                0 0 10px 10px #0ff; 
         }
         input[type=password] {
             background-color: rgb(255, 255, 255);
@@ -84,8 +84,8 @@ if(isset($_POST['submit']))
             margin-left:20px;
             text-align: center;
             box-shadow:
-    0 0 10px 10px #fff, 
-    0 0 10px 10px #0ff; 
+                0 0 10px 10px #fff, 
+                0 0 10px 10px #0ff; 
 
         }
         input
@@ -113,8 +113,8 @@ if(isset($_POST['submit']))
         {
             font-size:35px;
             box-shadow:
-    0 0 10px 10px #fff,  
-    0 0 10px 10px #FF4500; 
+                0 0 10px 10px #fff,  
+                0 0 10px 10px #FF4500; 
     color:white;
         }
         p
@@ -140,8 +140,8 @@ if(isset($_POST['submit']))
             border-radius:5px;
             font-weight:bold;
             box-shadow:
-    0 0 10px 10px #fff,  
-    0 0 10px 10px #0ff; 
+                0 0 10px 10px #fff,  
+                0 0 10px 10px #0ff; 
             border:2px solid black;
         }
     </style> 
