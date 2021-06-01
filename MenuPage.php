@@ -15,7 +15,6 @@ include 'config.php';
         }
         return $ret;
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +23,13 @@ include 'config.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>Document</title>
     <style>
-        body
+        .container-fluid
         {
-            background-color: rgb(37,150,190);
+            background: linear-gradient(#eacda3 , #d6ae7b);
+            height:100%;
         }
         .navbar
         {
@@ -36,7 +37,6 @@ include 'config.php';
         }
         header
         {
-            background-color: rgb(219, 218, 218);
             margin-bottom: 2%;
             padding-top: 1px;
         }
@@ -60,8 +60,8 @@ include 'config.php';
             border-radius:5px;
             font-weight:bold;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px purple; /* middle magenta */
+                0 0 10px 10px #fff,  
+                0 0 10px 10px purple; 
             border:2px solid black;
         }
         .card {
@@ -74,13 +74,13 @@ include 'config.php';
             color: red;
             font-size: 22px;
             
-            text-shadow: 1px 1px 2px black, 0 0 25px purple, 0 0 5px darkblue;
+            
         }
 
         .restauname {
             color: black;
             font-size: 30px;
-            text-shadow: 1px 1px 2px black, 0 0 25px purple, 0 0 5px darkblue;
+            
         }
         
         .card button {
@@ -104,7 +104,7 @@ include 'config.php';
         }
         .column {
             float: left;
-            width: 24%;
+            width: 25%;
             padding: 0 5px;
         }
         @media screen and (max-width: 600px) {
@@ -113,6 +113,7 @@ include 'config.php';
             display: block;
             margin-bottom: 20px;
         }
+        
         .orderbutton
         {
             color: black;
@@ -121,20 +122,17 @@ include 'config.php';
             padding-bottom: 5%;
             font-size: large;
         }
-}   
-
-
-    </style>
+        }
+   </style>
 </head>
 <body>
+<div class="container-fluid">
     <header>
         <h1 style="text-align:center;">FoodShala</h1>
         <?php 
         if (!isset($_GET['cus_id'])) {?>
         <a class="register" href="CustomerLogin.php">Login as Customer</a>
-        <!-- <a class="register" href="CustomerRegister.html">Register as Customer</a> -->
         <a class="register" href="RestaurantLogin.php">Login as Restaurant</a>
-        <!-- <a class="register" href="RestaurantRegister.html">Register as Restaurant Owner</a> -->
         <?php } else{ 
             $custo_id=$_GET['cus_id'];
             $sql = "SELECT customername FROM customer_details where customerid='$custo_id'";
@@ -186,13 +184,11 @@ include 'config.php';
                 <p class="restauname"><?php echo $restaurantname['restaurantname']; ?></p>
                 <a <?php if (isset($_GET['cus_id'])) { ?> onclick="alert('Food Ordered');" href="FoodOrdered.php?cus_id=<?php echo $_GET['cus_id']?>&res_id=<?php echo $restaurantid?>&item_id=<?php echo $itemid?>" <?php } ?>href="CustomerLogin.php">
                 <p ><button class="orderbutton">Order Now</button></p></a>
-                <p><button>Add to Cart</button></p>
             </div>
         </div>
         <?php 
      } ?>
-
-        
+    </div>
     </div>
 </body>
 </html>

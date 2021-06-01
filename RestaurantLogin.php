@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+$output="Login as Restaurant!!!";
 if(isset($_POST['submit']))
 {
     $username = $_POST['username'];
@@ -9,18 +10,13 @@ if(isset($_POST['submit']))
     $var = mysqli_fetch_array($res_u);
     if (mysqli_num_rows($res_u) == 1) 
     {
-  	    echo "successfully login"; 
         header ("Location:./AddMenuItem.php?res_id=$var[0]");
     }
     else
     {
-  	  echo "Sorry not a customer yet"; 	
-  	}
-    
+        $output="Something is Wrong!!!";
+    }
 }
-// else{
-//     echo "Please click Register button to submit the data..";
-// }
 ?>
 
 <!DOCTYPE html>
@@ -46,8 +42,8 @@ if(isset($_POST['submit']))
             border-radius:10%;
             margin-left:40px;
             box-shadow:
-    0 0 20px 20px #fff,  /* inner white */
-    0 0 30px 30px #0ff; /* middle magenta */
+                0 0 20px 20px #fff,  
+                0 0 30px 30px #0ff; 
         }
         input[type="submit"]
         {
@@ -60,8 +56,8 @@ if(isset($_POST['submit']))
             font-weight:bold;
             cursor: pointer;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+                0 0 10px 10px #fff,  
+                0 0 10px 10px #0ff;
             
         }
         input[type=text] {
@@ -74,8 +70,8 @@ if(isset($_POST['submit']))
             margin-left:20px;
             text-align: center;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+                0 0 10px 10px #fff,  
+                0 0 10px 10px #0ff;
         }
         input[type=password] {
             background-color: rgb(255, 255, 255);
@@ -87,8 +83,8 @@ if(isset($_POST['submit']))
             margin-left:20px;
             text-align: center;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+                0 0 10px 10px #fff, 
+                0 0 10px 10px #0ff;
 
         }
         input
@@ -116,9 +112,9 @@ if(isset($_POST['submit']))
         {
             font-size:35px;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #FF4500; /* middle magenta */
-    color:white;
+                0 0 10px 10px #fff,  
+                0 0 10px 10px #FF4500;
+            color:white;
         }
         p
         {
@@ -143,17 +139,16 @@ if(isset($_POST['submit']))
             border-radius:5px;
             font-weight:bold;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+                0 0 10px 10px #fff, 
+                0 0 10px 10px #0ff; 
             border:2px solid black;
         }
     </style>
-    
 </head>
 <body>
     <center>
     <div class="log-form">
-        <h1>Login as Restaurant!!!</h1>
+        <h1><?php echo $output ?></h1>
         <form method="POST">
         <button disabled>Username</button>
         <input type="text" name="username" placeholder="Username"  required/>
@@ -167,8 +162,6 @@ if(isset($_POST['submit']))
         <br>
         <p>Not Registered?
         <a class="register" href="RestaurantRegister.php">Register</a></p>
-       
-        
         </form>
       </div>
     </center>

@@ -1,8 +1,8 @@
 <?php
 include 'config.php';
 ?>
-
 <?php
+$output="Create your Customer Account!!!";
 if(isset($_POST['submit']))
 {
     $username = $_POST['username'];
@@ -12,30 +12,17 @@ if(isset($_POST['submit']))
     $category = $_POST['category'];
     
     $sql_u = "SELECT * FROM customer_details WHERE customername='$username'";
-    $sql_e = "SELECT * FROM customer_details WHERE customerpassword='$password'";
   	$res_u = mysqli_query($conn, $sql_u);
-      $res_e = mysqli_query($conn, $sql_e);
-      if (mysqli_num_rows($res_u) > 0) 
-      {
-  	  echo "Sorry... username already taken"; 	
-  	}
-      else if(mysqli_num_rows($res_e) > 0){
-  	  echo "Sorry... password already taken"; 	
-  	}
-      else{
+    if (mysqli_num_rows($res_u) > 0) {
+        $output="Username already taken";
+    }
+    else
+    {
         $sql = "INSERT INTO customer_details (customername, customerpassword, customercontactnumber, address, preferance) VALUES ('$username', '$password', '$contactnumber', '$address', '$category')";
         mysqli_query($conn, $sql);
-        // $fetch = mysqli_query($conn,"select * from users where email = '$email'");
-        // $data = mysqli_fetch_array($fetch);
-        // $id = $data['id'];
-        // $sql1 = "insert into student_details (username, branch, year) values ('$id', '$branch', '$year')";
-        // mysqli_query($conn,$sql1);
+        header ("Location:CustomerLogin.php");
   	}
-    
 }
-// else{
-//     echo "Please click Register button to submit the data..";
-// }
 ?>
 
 <!DOCTYPE html>
@@ -61,8 +48,8 @@ if(isset($_POST['submit']))
             border-radius:10%;
             margin-left:40px;
             box-shadow:
-    0 0 20px 20px #fff,  /* inner white */
-    0 0 30px 30px #0ff; /* middle magenta */
+                0 0 20px 20px #fff,  
+                0 0 30px 30px #0ff; 
         }
         input[type="submit"]
         {
@@ -77,8 +64,8 @@ if(isset($_POST['submit']))
             align-content:center;
             margin-top:5px;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+                0 0 10px 10px #fff,  
+                0 0 10px 10px #0ff;
             
         }
         input[type=text] {
@@ -91,8 +78,8 @@ if(isset($_POST['submit']))
             margin-left:20px;
             text-align: center;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+                0 0 10px 10px #fff, 
+                0 0 10px 10px #0ff; 
         }
         input[type=password] {
             background-color: rgb(255, 255, 255);
@@ -104,8 +91,8 @@ if(isset($_POST['submit']))
             margin-left:20px;
             text-align: center;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+                0 0 10px 10px #fff, 
+                0 0 10px 10px #0ff; 
 
         }
         input[type=number] {
@@ -118,8 +105,8 @@ if(isset($_POST['submit']))
             margin-left:20px;
             text-align: center;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+                0 0 10px 10px #fff, 
+                0 0 10px 10px #0ff; 
 
         }
         input[type=radio] {
@@ -134,8 +121,8 @@ if(isset($_POST['submit']))
             text-align: center;
             padding-top:5px;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+                0 0 10px 10px #fff,  
+                0 0 10px 10px #0ff; 
 
         }
         input
@@ -163,9 +150,9 @@ if(isset($_POST['submit']))
         {
             font-size:35px;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #FF4500; /* middle magenta */
-    color:white;
+                0 0 10px 10px #fff,  
+                0 0 10px 10px #FF4500;
+            color:white;
         }
         p
         {
@@ -190,8 +177,8 @@ if(isset($_POST['submit']))
             border-radius:5px;
             font-weight:bold;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+                0 0 10px 10px #fff,  
+                0 0 10px 10px #0ff; 
             border:2px solid black;
         }
     </style>
@@ -200,19 +187,16 @@ if(isset($_POST['submit']))
 <body>
     <center>
     <div class="log-form">
-        <h2>Create your Customer Account!!!</h2>
-        <form method="POST" action="CustomerRegister.php">
+        <h2><?php echo $output ?></h2>
+        <form method="POST">
         <button disabled>Username</button>
         <input type="text" name="username" placeholder="Username" required/>
         <br>
         <button disabled>Password</button>
-        <input type="password" name="password" placeholder="Password" required/>
-        <br>
-        <button disabled>Confirm PWD</button>
-        <input type="password" name="confirmpassword" placeholder="Confirm Password" required/>
+        <input type="password" name="password" minlength="4" maxlength="8" placeholder="Password" required/>
         <br>
         <button disabled>Contact Number</button>
-        <input type="number" name="contactnumber" placeholder="Contact Number" required/>
+        <input type="number" name="contactnumber" pattern="[1-9]{1}[0-9]{9}" title="Must be of length 10, should not start with 0!" placeholder="Contact Number" required/>
         <br>
         <button disabled>Address</button>
         <input type="text" name="address" placeholder="Address" required/>

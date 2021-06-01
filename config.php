@@ -5,9 +5,7 @@ $password = "";
 $databasename = "foodshala";
 
 $conn = mysqli_connect($hostname, $username, $password, $databasename);
-if($conn){
-    // echo "Connection Successful...";
-}
+if($conn){}
 else{
     echo "Connection failed..." + mysqli_connect_error();
 }

@@ -3,6 +3,7 @@ include 'config.php';
 ?>
 
 <?php
+$output="Add Items In Your Menu!!!";
 if(isset($_POST['submit']))
 {
     $username = $_POST['username'];
@@ -12,24 +13,29 @@ if(isset($_POST['submit']))
     $category = $_POST['category'];
     
     $sql_u = "SELECT * FROM restaurant_details WHERE username='$username' && restaurantpassword='$password'";
-    $sql_e = "SELECT * FROM add_item WHERE itemname='$itemname'";
   	$row = mysqli_query($conn, $sql_u);
-    $restaurantid = mysqli_fetch_array($row);
-    $resid=$restaurantid['restaurantid'];
-    $res_e = mysqli_query($conn, $sql_e);
-    if (mysqli_num_rows($res_e) > 0) 
+    if (mysqli_num_rows($row) < 1)
     {
-  	  echo "Sorry... itemname already taken"; 	
-  	}
-    else{
-        $sql = "INSERT INTO add_item (restaurantid, itemname, price, category) VALUES ('$resid', '$itemname', '$price', '$category')";
-        mysqli_query($conn, $sql);
-  	}
+        $output="Username or Password Mismatch!!!";
+    }
+    else
+    {
+        $restaurantid = mysqli_fetch_array($row);
+        $resid=$restaurantid['restaurantid'];
+        $sql_e = "SELECT * FROM add_item WHERE itemname='$itemname' && restaurantid='$resid'";
+        $res_e = mysqli_query($conn, $sql_e);
+        if (mysqli_num_rows($res_e) > 0)
+        {
+            $output="Itemname already exists!!!";
+        }
+        else{
+            $sql = "INSERT INTO add_item (restaurantid, itemname, price, category) VALUES ('$resid', '$itemname', '$price', '$category')";
+            mysqli_query($conn, $sql);
+          }
+    }
+    
     
 }
-// else{
-//     echo "Please click Register button to submit the data..";
-// }
 ?>
 
 <!DOCTYPE html>
@@ -55,8 +61,8 @@ if(isset($_POST['submit']))
             border-radius:10%;
             margin-left:40px;
             box-shadow:
-    0 0 20px 20px #fff,  /* inner white */
-    0 0 30px 30px #0ff; /* middle magenta */
+    0 0 20px 20px #fff,  
+    0 0 30px 30px #0ff;
         }
         input[type="submit"]
         {
@@ -69,8 +75,8 @@ if(isset($_POST['submit']))
             font-weight:bold;
             cursor: pointer;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+    0 0 10px 10px #fff,  
+    0 0 10px 10px #0ff; 
             
         }
         input[type=text] {
@@ -83,8 +89,8 @@ if(isset($_POST['submit']))
             margin-left:20px;
             text-align: center;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+    0 0 10px 10px #fff,
+    0 0 10px 10px #0ff; 
         }
         input[type=password] {
             background-color: rgb(255, 255, 255);
@@ -96,8 +102,8 @@ if(isset($_POST['submit']))
             margin-left:20px;
             text-align: center;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+    0 0 10px 10px #fff,
+    0 0 10px 10px #0ff;
 
         }
         input[type=number] {
@@ -110,8 +116,8 @@ if(isset($_POST['submit']))
             margin-left:20px;
             text-align: center;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+    0 0 10px 10px #fff, 
+    0 0 10px 10px #0ff; 
 
         }
         input
@@ -139,8 +145,8 @@ if(isset($_POST['submit']))
         {
             font-size:35px;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #FF4500; /* middle magenta */
+    0 0 10px 10px #fff,  
+    0 0 10px 10px #FF4500; 
     color:white;
         }
         p
@@ -166,14 +172,15 @@ if(isset($_POST['submit']))
             border-radius:5px;
             font-weight:bold;
             box-shadow:
-    0 0 10px 10px #fff,  /* inner white */
-    0 0 10px 10px #0ff; /* middle magenta */
+    0 0 10px 10px #fff,  
+    0 0 10px 10px #0ff;
             border:2px solid black;
         }
     </style>
     
 </head>
 <body>
+    
     <header>
 <?php 
     if (isset($_GET['res_id'])) { 
@@ -185,7 +192,7 @@ if(isset($_POST['submit']))
         ?>
             <h1 style="margin-left:5%;">
             <a href="MenuPage.php">
-                <p ><button style="float:right;margin-right:10%;">Log Out</button></p></a>
+                <p ><button style="float:right;margin-right:10%;width:10%;font-size:25px;">Log Out</button></p></a>
             <?php
             echo("Loged in as ");
             echo($restau_name);?>
@@ -194,7 +201,7 @@ if(isset($_POST['submit']))
             </header>
     <center>
         <div class="log-form">
-            <h1>Add Items In Your Menu</h1>
+            <h1><?php echo $output ?></h1>
             <form method="POST">
             <button disabled>Username</button>
             <input type="text" name="username" placeholder="Username" required/>
@@ -216,7 +223,7 @@ if(isset($_POST['submit']))
             <h1><a class="register" href="ViewOrders.php?res_id=<?php echo $_GET['res_id']?>">View Your Orders</a></h1>
             </form>
           </div>
-          
         </center>
+    </div>
 </body>
 </html>
